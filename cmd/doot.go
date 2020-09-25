@@ -21,8 +21,8 @@ import (
 	"github.com/dreznel/doot/dootio"
 	"github.com/dreznel/doot/skeletons"
 	"github.com/spf13/afero"
-
 	"github.com/spf13/cobra"
+	"os"
 )
 
 // dootCmd represents the doot command
@@ -80,12 +80,17 @@ func doot() {
 		},
 	}
 
-	err := dootio.DootSkeleton(fs, config, "./", skeleton)
+	workingDir, err := os.Getwd()
+	if err != nil {
+		panic(err)
+	}
+	//workingDir, err := filepath.Abs(".")
+	err = dootio.DootSkeleton(fs, config, workingDir, skeleton)
 
 	if err != nil{
 		panic(err)
 	} else {
-		fmt.Println("Doot doot, Mr. Skeltal!")
+		fmt.Println("Doot doot, Mr. Skeltal! Please")
 	}
 }
 
