@@ -9,9 +9,8 @@ type TemplateNode struct {
 
 type NodeType int
 
-const nodeType {
-	directory = iota
-	file
-	root
-
-}
+const (
+	File NodeType = iota
+	Directory NodeType = iota
+	Root NodeType = iota
+)
